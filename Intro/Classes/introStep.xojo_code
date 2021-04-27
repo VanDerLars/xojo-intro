@@ -36,15 +36,14 @@ Protected Class introStep
 		  // find the boundries:
 		  Var maxL, maxT As Integer = 1000000
 		  Var maxR, maxB As Integer = 0
+		  Self.focusControlArray = focusControls_
 		  
-		  For Each c As RectControl In focusControls_
-		    
+		  For Each c As RectControl In Self.focusControlArray
 		    If c.Left < maxL Then maxL = c.Left
 		    If c.top < maxT Then maxt = c.top
 		    
 		    If (c.top + c.Height) > maxB Then maxB = (c.top + c.Height)
 		    If (c.Left + c.Width) > maxR Then maxR = (c.Left + c.Width)
-		    
 		  Next
 		  
 		  Var win As Window = focusControls_(0).Window
@@ -333,6 +332,24 @@ Protected Class introStep
 		  Var pos As New introStepPosition(Self.focusControl)
 		  Self.focusControlPosition = pos
 		  
+		  If self.focusControlArray.Ubound > -1 Then
+		    Var maxL, maxT As Integer = 1000000
+		    Var maxR, maxB As Integer = 0
+		    
+		    For Each c As RectControl In Self.focusControlArray
+		      If c.Left < maxL Then maxL = c.Left
+		      If c.top < maxT Then maxt = c.top
+		      
+		      If (c.top + c.Height) > maxB Then maxB = (c.top + c.Height)
+		      If (c.Left + c.Width) > maxR Then maxR = (c.Left + c.Width)
+		    Next
+		    
+		    pos.L = maxL
+		    pos.T = maxT
+		    pos.W =  maxR - maxL
+		    pos.h =  maxB - maxT
+		  End If
+		  
 		  Var parent As Variant
 		  
 		  parent = focusControl.Parent
@@ -483,7 +500,7 @@ Protected Class introStep
 
 	#tag Method, Flags = &h0
 		Sub show()
-		  if ControlArrayMyWindow <> nil then myWindow = ControlArrayMyWindow
+		  If ControlArrayMyWindow <> Nil Then myWindow = ControlArrayMyWindow
 		  
 		  If focusWindow <> Nil Then
 		    If focusWindow IsA ContainerControl Then
@@ -540,12 +557,52 @@ Protected Class introStep
 
 	#tag Method, Flags = &h0
 		Sub showSingle()
+		  //Self.singleMode = True
+		  //
+		  //If Self.focusControl <> Nil Then Self.displayBackgroundRectControl
+		  //If Self.focusWindow <> Nil Then Self.displayBackgroundWindowControl
+		  //
+		  //// single UI
+		  //
+		  //Var mes As New introMessageSingle
+		  //mes.title = Self.title
+		  //mes.message = Self.message
+		  //
+		  //Self.introMessageContainer = mes
+		  //
+		  //
+		  //Self.displayIntroMessage
+		  //
+		  //
+		  //If Self.myWindow <> Nil Then
+		  //AddHandler myWindow.resizing, WeakAddressOf windowResized
+		  //End If
+		  
+		  
+		  // ----
 		  Self.singleMode = True
 		  
-		  If Self.focusControl <> Nil Then Self.displayBackgroundRectControl
-		  If Self.focusWindow <> Nil Then Self.displayBackgroundWindowControl
+		  If ControlArrayMyWindow <> Nil Then myWindow = ControlArrayMyWindow
 		  
-		  // single UI
+		  If focusWindow <> Nil Then
+		    If focusWindow IsA ContainerControl Then
+		      Var r As New RectControl
+		      r.Left = focusWindow.Left
+		      r.Top = focusWindow.Top
+		      r.Width = focusWindow.Width
+		      r.Height = focusWindow.Height
+		      
+		      Self.focusControl = r
+		      
+		      Self.displayBackgroundRectControl
+		    Else
+		      Self.displayBackgroundWindowControl
+		    End If
+		  Else
+		    Self.displayBackgroundRectControl
+		  End If
+		  
+		  // multiple step UI
 		  
 		  Var mes As New introMessageSingle
 		  mes.title = Self.title
@@ -554,12 +611,13 @@ Protected Class introStep
 		  Self.introMessageContainer = mes
 		  
 		  
-		  Self.displayIntroMessage
-		  
-		  
 		  If Self.myWindow <> Nil Then
 		    AddHandler myWindow.resizing, WeakAddressOf windowResized
 		  End If
+		  
+		  Self.displayIntroMessage
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -608,6 +666,10 @@ Protected Class introStep
 
 	#tag Property, Flags = &h0
 		focusControl As RectControl
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		focusControlArray() As rectControl
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

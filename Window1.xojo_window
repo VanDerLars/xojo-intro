@@ -268,7 +268,22 @@ End
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  Var d As New introStep(GroupBox1, "hallo", "yay")
+		  // test basic
+		  //Var d As New introStep(GroupBox1, "hallo", "yay")
+		  
+		  // test with containercontrol
+		  //Var d As New introStep(Self.TestContainer1, "hallo", "yay")
+		  
+		  // test with control inside containercontrol
+		  Var d As New introStep(Self.TestContainer1.Label2, "hallo", "yay")
+		  
+		  // test with container array
+		  //Var rArr() As RectControl
+		  //rArr.Add(Self.ComboBox1)
+		  //rArr.Add(Self.PushButton2)
+		  //Var d As New introStep(rArr, "ControlArray", "You can also highlight multiple Controls at once")
+		  
+		  
 		  
 		  d.showSingle
 		  
