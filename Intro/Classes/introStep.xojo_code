@@ -557,29 +557,7 @@ Protected Class introStep
 
 	#tag Method, Flags = &h0
 		Sub showSingle()
-		  //Self.singleMode = True
-		  //
-		  //If Self.focusControl <> Nil Then Self.displayBackgroundRectControl
-		  //If Self.focusWindow <> Nil Then Self.displayBackgroundWindowControl
-		  //
-		  //// single UI
-		  //
-		  //Var mes As New introMessageSingle
-		  //mes.title = Self.title
-		  //mes.message = Self.message
-		  //
-		  //Self.introMessageContainer = mes
-		  //
-		  //
-		  //Self.displayIntroMessage
-		  //
-		  //
-		  //If Self.myWindow <> Nil Then
-		  //AddHandler myWindow.resizing, WeakAddressOf windowResized
-		  //End If
 		  
-		  
-		  // ----
 		  Self.singleMode = True
 		  
 		  If ControlArrayMyWindow <> Nil Then myWindow = ControlArrayMyWindow
