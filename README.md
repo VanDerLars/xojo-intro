@@ -57,6 +57,17 @@ End Sub
 See the test project, this should give you everthing you need.
 
 
+### Options
+
+you have the following options, which can be set in the `introHandler` class over Code and UI and in the `introStep` class over code as well:
+
+- `closeStepByClickOnBackground` `True/False` Indicates weather the intro is canceled by clicking on the background.
+- `useOwnColors` `True/False` Indicates weather your own colors are used or the standard ones
+- `backgroundColorBackground` `color` The color of the background which highlights your controls. Make sure you use a semi transparant color
+- `backgroundColorMessage` `color` The background color of the message
+- `borderColorMessage` `color` The border color of the message
+
+
 ## Good to know:
 
 - You can control the colors of your intros by altering the background color properties of the controls under Intro->UI
@@ -82,7 +93,7 @@ Resizing:
 - [X] Add ControlArrays to highlight more than one Control (currently only possible by using ContainerControls)
 - [ ] ~~Make use of the AnimationKit to smoothen the things a bit~~ _Canceled, because animation kit has no transperancy animations._
 - [ ] Find another way to animate some things.
-- [ ] More configurations of the whole thing would be a good thing.
+- [X] More configurations of the whole thing would be a good thing.
 - [X] Resize the highlight area together with the window.
 - [ ] Better resizing for some corner cases.
 - [X] Resizing of ControlArrays doesn't work well.
