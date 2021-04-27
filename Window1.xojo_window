@@ -10,7 +10,7 @@ Begin Window Window1
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   468
+   Height          =   428
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -59,16 +59,16 @@ Begin Window Window1
    Begin GroupBox GroupBox1
       AllowAutoDeactivate=   True
       Bold            =   False
-      Caption         =   "Untitled"
+      Caption         =   "Options"
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
-      Height          =   100
+      Height          =   151
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   35
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -79,21 +79,119 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   86
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   246
+      Width           =   279
+      Begin CheckBox CheckBox1
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Close Step by Click on Background"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   88
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   239
+      End
+      Begin CheckBox CheckBox2
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Use Own Colors"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   120
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   239
+      End
+      Begin CheckBox CheckBox3
+         AllowAutoDeactivate=   True
+         Bold            =   False
+         Caption         =   "Status Indicator Visible"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
+         Height          =   20
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   152
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         VisualState     =   0
+         Width           =   239
+      End
    End
    Begin introHandler introHandler1
       backgroundColorBackground=   &cE8ACA182
       backgroundColorMessage=   &c76B5E427
       borderColorMessage=   &c4582FF3A
       closeStepByClickOnBackground=   False
-      closeStepByClickOnDescription=   True
       Index           =   -2147483648
       LockedInPosition=   False
       Scope           =   0
+      statusIndicatorVisible=   True
       TabPanelIndex   =   0
       useOwnColors    =   True
    End
@@ -115,11 +213,11 @@ Begin Window Window1
       HasBorder       =   True
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
-      Height          =   221
+      Height          =   321
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   293
+      Left            =   311
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   False
@@ -138,13 +236,13 @@ Begin Window Window1
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   86
+      Top             =   69
       Transparent     =   False
       Underline       =   False
       UnicodeMode     =   1
       ValidationMask  =   ""
       Visible         =   True
-      Width           =   228
+      Width           =   305
    End
    Begin PushButton PushButton2
       AllowAutoDeactivate=   True
@@ -206,11 +304,11 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   54
+      Top             =   215
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   223
+      Width           =   279
    End
    Begin TestContainer TestContainer1
       AllowAutoDeactivate=   True
@@ -236,10 +334,10 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   198
+      Top             =   254
       Transparent     =   True
       Visible         =   True
-      Width           =   261
+      Width           =   279
    End
    Begin Label Label1
       AllowAutoDeactivate=   True
@@ -254,7 +352,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   255
+      Left            =   311
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -274,7 +372,7 @@ Begin Window Window1
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   361
+      Width           =   305
    End
 End
 #tag EndWindow
@@ -300,6 +398,14 @@ End
 		  
 		  
 		  
+		  
+		  
+		  
+		  
+		  // options
+		  Self.CheckBox1.Value = Self.introHandler1.closeStepByClickOnBackground
+		  Self.CheckBox2.Value = Self.introHandler1.useOwnColors
+		  Self.CheckBox3.Value = Self.introHandler1.statusIndicatorVisible
 		End Sub
 	#tag EndEvent
 
@@ -328,6 +434,27 @@ End
 		  
 		  d.showSingle
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox1
+	#tag Event
+		Sub Action()
+		  self.introHandler1.closeStepByClickOnBackground = me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox2
+	#tag Event
+		Sub Action()
+		  self.introHandler1.useOwnColors = me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox3
+	#tag Event
+		Sub Action()
+		  self.introHandler1.statusIndicatorVisible = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

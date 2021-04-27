@@ -50,6 +50,35 @@ Begin introMessage introMessageMultiple
       Transparent     =   False
       Visible         =   True
       Width           =   320
+      Begin introMessageStatus introMessageStatus1
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   False
+         AllowTabs       =   True
+         Backdrop        =   0
+         BackgroundColor =   &cFFFFFF00
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         HasBackgroundColor=   False
+         Height          =   20
+         InitialParent   =   "RoundRectangle1"
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Tooltip         =   ""
+         Top             =   150
+         Transparent     =   True
+         Visible         =   False
+         Width           =   280
+      End
    End
    Begin Label lblTitle
       AllowAutoDeactivate=   True
@@ -233,7 +262,14 @@ End
 	#tag Event
 		Sub Open()
 		  Self.lblTitle.Text = Self.title
-		  self.tbMessage.Text = self.message
+		  Self.tbMessage.Text = Self.message
+		  
+		  If statusIndicatorVisible Then
+		    Self.introMessageStatus1.Visible = True
+		    Self.introMessageStatus1.pbCount.MaximumValue = Self.maxIndex + 1
+		    Self.introMessageStatus1.pbCount.Value = Self.currIndex + 1
+		    Self.introMessageStatus1.lblCount.Text = "Step " + CStr(Self.currIndex + 1) + " of " + CStr(Self.maxIndex + 1)
+		  End If
 		End Sub
 	#tag EndEvent
 
@@ -257,6 +293,18 @@ End
 
 	#tag Property, Flags = &h0
 		closeStepByClickOnDescription As Boolean = true
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		currIndex As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		maxIndex As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		statusIndicatorVisible As Boolean = true
 	#tag EndProperty
 
 
@@ -518,6 +566,30 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="closeStepByClickOnDescription"
+		Visible=false
+		Group="Behavior"
+		InitialValue="true"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="currIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="maxIndex"
+		Visible=false
+		Group="Behavior"
+		InitialValue=""
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="statusIndicatorVisible"
 		Visible=false
 		Group="Behavior"
 		InitialValue="true"

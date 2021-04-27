@@ -27,6 +27,9 @@ Protected Class introStep
 	#tag Method, Flags = &h21
 		Private Sub applyOptionToMessage(cntMes as introMessageMultiple)
 		  cntMes.closeStepByClickOnDescription = Self.closeStepByClickOnDescription
+		  cntMes.statusIndicatorVisible = Self.statusIndicatorVisible
+		  cntMes.currIndex = Self.currIndex
+		  cntMes.maxIndex = Self.maxIndex
 		  
 		  If useOwnColors Then
 		    cntMes.RoundRectangle1.FillColor = Self.backgroundColorMessage
@@ -260,7 +263,12 @@ Protected Class introStep
 		            // cannot embed
 		            // Display a modal dialog
 		            Var m As New MessageDialog
-		            m.Message = Self.title + EndOfLine + Self.message
+		            m.Message = Self.title + EndOfLine + EndOfLine + Self.message
+		            
+		            If Self.statusIndicatorVisible Then
+		              m.Message = m.Message + EndOfLine + EndOfLine + "Step " + CStr(Self.currIndex + 1) + " of " + CStr(Self.maxIndex + 1)
+		            End If
+		            
 		            If Not Self.isLastStep Then
 		              m.IconType = MessageDialog.IconTypes.Note
 		              m.ActionButton.Caption = "Next"
@@ -704,6 +712,10 @@ Protected Class introStep
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		currIndex As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		focusControl As RectControl
 	#tag EndProperty
 
@@ -732,6 +744,10 @@ Protected Class introStep
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		maxIndex As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		message As string
 	#tag EndProperty
 
@@ -741,6 +757,10 @@ Protected Class introStep
 
 	#tag Property, Flags = &h0
 		singleMode As boolean = false
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		statusIndicatorVisible As Boolean = true
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -895,6 +915,14 @@ Protected Class introStep
 			Group="Behavior"
 			InitialValue="&c000000"
 			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="statusIndicatorVisible"
+			Visible=false
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

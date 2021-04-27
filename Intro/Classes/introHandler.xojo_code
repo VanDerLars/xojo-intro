@@ -12,6 +12,10 @@ Protected Class introHandler
 		  nextstep.backgroundColorMessage = Self.backgroundColorMessage
 		  nextstep.borderColorMessage = Self.borderColorMessage
 		  nextstep.closeStepByClickOnBackground = Self.closeStepByClickOnBackground
+		  nextstep.statusIndicatorVisible = Self.statusIndicatorVisible
+		  
+		  nextstep.currIndex = Self.currStepIndex
+		  nextstep.maxIndex = self.introItems.Ubound
 		  
 		  nextstep.useOwnColors = Self.useOwnColors
 		  
@@ -34,7 +38,7 @@ Protected Class introHandler
 		Sub nextStep()
 		  Var nextstepIndex As Integer = Self.currStepIndex + 1
 		  
-		  If nextstepIndex > Self.introItems.LastIndex Then 
+		  If nextstepIndex > Self.introItems.Ubound Then 
 		    Exit Sub
 		  Else
 		    showStep(nextstepIndex)
@@ -91,7 +95,7 @@ Protected Class introHandler
 		  Self.currStep = nextstep
 		  Self.currStepIndex = ind
 		  
-		  nextstep.isLastStep = (Self.introItems.LastIndex = ind)
+		  nextstep.isLastStep = (Self.introItems.Ubound = ind)
 		  nextstep.isFirstStep = (ind = 0)
 		  
 		  
@@ -143,6 +147,10 @@ Protected Class introHandler
 
 	#tag Property, Flags = &h0
 		introItems() As introStep
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		statusIndicatorVisible As Boolean = true
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -200,9 +208,17 @@ Protected Class introHandler
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="useOwnColors"
+			Name="statusIndicatorVisible"
 			Visible=true
 			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="useOwnColors"
+			Visible=true
+			Group="Colors"
 			InitialValue="false"
 			Type="Boolean"
 			EditorType=""
@@ -210,7 +226,7 @@ Protected Class introHandler
 		#tag ViewProperty
 			Name="backgroundColorMessage"
 			Visible=true
-			Group="Behavior"
+			Group="Colors"
 			InitialValue="&c000000"
 			Type="Color"
 			EditorType=""
@@ -218,7 +234,7 @@ Protected Class introHandler
 		#tag ViewProperty
 			Name="borderColorMessage"
 			Visible=true
-			Group="Behavior"
+			Group="Colors"
 			InitialValue="&c000000"
 			Type="Color"
 			EditorType=""
@@ -226,7 +242,7 @@ Protected Class introHandler
 		#tag ViewProperty
 			Name="backgroundColorBackground"
 			Visible=true
-			Group="Behavior"
+			Group="Colors"
 			InitialValue="&c000000"
 			Type="Color"
 			EditorType=""

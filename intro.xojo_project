@@ -17,6 +17,7 @@ Class=introMessage;Intro/Classes/introMessage.xojo_code;&h0000000035475FFF;&h000
 Class=introStep;Intro/Classes/introStep.xojo_code;&h0000000050DAA7FF;&h00000000548687FF;false
 Class=introHandler;Intro/Classes/introHandler.xojo_code;&h0000000016BF8FFF;&h00000000548687FF;false
 Class=introStepPosition;Intro/Classes/introStepPosition.xojo_code;&h0000000010FC97FF;&h00000000548687FF;false
+Window=introMessageStatus;Intro/UI/introMessageStatus.xojo_window;&h0000000003B007FF;&h00000000734BAFFF;false
 DefaultWindow=Window1
 AppMenuBar=MainMenuBar
 MajorVersion=1
