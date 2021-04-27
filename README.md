@@ -80,7 +80,7 @@ Resizing (not perfect currently):
 - [ ] More configurations of the whole thing would be a good thing.
 - [X] Resize the highlight area together with the window.
 - [ ] Better resizing for some corner cases.
-- [ ] Resizing of ControlArrays doesn't work well.
+- [X] Resizing of ControlArrays doesn't work well.
 
 ## Contribute
 
