@@ -30,6 +30,14 @@ Self.introHandler1.addStep(New introStep(Self.TestContainer1, "ContainerControl"
 // and also controls inside embedded ContainerControls
 Self.introHandler1.addStep(New introStep(Self.TestContainer1.Label2, "Nested Controls", "With this library you can even focus on controls which are placed inside Containers."))
 
+// And new: You can also highlight multiple controls at once, by using an array of controls:
+Var rArr() As RectControl
+rArr.Add(Self.ComboBox1)
+rArr.Add(Self.PushButton2)
+Self.introHandler1.addStep(New introStep(rArr, "ControlArray", "You can also highlight multiple Controls at once"))
+
+
+
 Self.introHandler1.start
 End Sub
 ```
@@ -66,12 +74,13 @@ Resizing (not perfect currently):
 
 ## Ideas and todo
 
-- [ ] Add ControlArrays to highlight more than one Control (currently only possible by using ContainerControls)
+- [X] Add ControlArrays to highlight more than one Control (currently only possible by using ContainerControls)
 - [ ] ~~Make use of the AnimationKit to smoothen the things a bit~~ _Canceled, because animation kit has no transperancy animations._
 - [ ] Find another way to animate some things.
 - [ ] More configurations of the whole thing would be a good thing.
 - [X] Resize the highlight area together with the window.
 - [ ] Better resizing for some corner cases.
+- [ ] Resizing of ControlArrays doesn't work well.
 
 ## Contribute
 
