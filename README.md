@@ -1,6 +1,8 @@
 ## Xojo Intro
 
-Xojo-Intro implements a simple way to build step-by-step tutorials in Xojo destop applications
+Xojo-Intro implements a simple way to build step-by-step tutorials in Xojo destop applications.
+
+The equivalent for xojo web framework 1 is here -> https://github.com/VanDerLars/xojo_intro_js/
 
 ### Usage as multiple step intro
 
