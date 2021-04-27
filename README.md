@@ -67,7 +67,7 @@ Resizing (not perfect currently):
 ## Ideas and todo
 
 - [ ] Add ControlArrays to highlight more than one Control (currently only possible by using ContainerControls)
-- ~~[ ] Make use of the AnimationKit to smoothen the things a bit~~ _Canceled, because animation kit has no transperancy animations._
+- [ ] ~~Make use of the AnimationKit to smoothen the things a bit~~ _Canceled, because animation kit has no transperancy animations._
 - [ ] Find another way to animate some things.
 - [ ] More configurations of the whole thing would be a good thing.
 - [X] Resize the highlight area together with the window.
