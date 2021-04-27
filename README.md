@@ -62,7 +62,7 @@ See the test project, this should give you everthing you need.
 - [ ] Add ControlArrays to highlight more than one Control (currently only possible by using ContainerControls)
 - [ ] Make use of the AnimationKit to smoothen the things a bit
 - [ ] More configurations of the whole thing would be a good thing.
-- [ ] Resize the highlight are toghether with the window.
+- [ ] Resize the highlight area toghether with the window.
 
 ## Contribute
 
