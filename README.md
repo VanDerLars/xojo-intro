@@ -64,7 +64,7 @@ you have the following options, which can be set in the `introHandler` class ove
 - `backgroundColorBackground` `color` The color of the background which highlights your controls. Make sure you use a semi transparant color
 - `backgroundColorMessage` `color` The background color of the message
 - `borderColorMessage` `color` The border color of the message
-
+- `statusIndicatorVisible` `True/False` Sets if the messages should show a status bar, indicating which step is currently shown.
 
 ## Good to know:
 
