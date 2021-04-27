@@ -64,12 +64,17 @@ See the test project, this should give you everthing you need.
 - You can use all sorts of regular UI controls, which inherit from `RectControl`, but also `Window` and `ContainerControl` is possible
 - Controls inside nested ContainerControls will work as well
 
-## Screenshot:
+## Screenshots:
+
+current design:
+
+![screencast](https://github.com/VanDerLars/xojo-intro/blob/main/screenshot.png)
+
 Basic functions:
 ![screencast](https://github.com/VanDerLars/xojo-intro/blob/main/screencast.gif)
 
-Resizing (not perfect currently):
 
+Resizing:
 ![screencast resize](https://github.com/VanDerLars/xojo-intro/blob/main/screencast_resize.gif)
 
 ## Ideas and todo
