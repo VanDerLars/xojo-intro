@@ -31,6 +31,40 @@ Protected Class introStep
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Constructor(focusControls_() as RectControl, title_ as string, message_ as String)
+		  // highlight has an array of controls
+		  // find the boundries:
+		  Var maxL, maxT As Integer = 1000000
+		  Var maxR, maxB As Integer = 0
+		  
+		  For Each c As RectControl In focusControls_
+		    
+		    If c.Left < maxL Then maxL = c.Left
+		    If c.top < maxT Then maxt = c.top
+		    
+		    If (c.top + c.Height) > maxB Then maxB = (c.top + c.Height)
+		    If (c.Left + c.Width) > maxR Then maxR = (c.Left + c.Width)
+		    
+		  Next
+		  
+		  Var win As Window = focusControls_(0).Window
+		  Self.myWindow = win
+		  Self.ControlArrayMyWindow = win
+		  
+		  Var r As New RectControl
+		  r.Left = maxL
+		  r.Top = maxT
+		  r.Width =  maxR - maxL
+		  r.Height =  maxB - maxT
+		  
+		  
+		  Self.focusControl = r
+		  Self.title = title_
+		  Self.message = message_
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Constructor(focusControl_ as RectControl, title_ as string, message_ as String)
 		  Self.focusControl = focusControl_
 		  Self.title = title_
@@ -57,44 +91,46 @@ Protected Class introStep
 		  
 		  parent = focusControl.Parent
 		  
-		  If parent = Nil Then
-		    // control is directly in a window
-		    If focusWindow IsA ContainerControl Then
-		      Var focCC As ContainerControl = ContainerControl(focusWindow)
-		      myWindow = focCC.Window
-		    Else
-		      myWindow = focusControl.Window
-		    End If
-		  Else
-		    // control is in a subcontrol
-		    
-		    While Not myWindow IsA Window
-		      If Not parent IsA Window Then 
-		        
-		        // calc position
-		        Var parentRect As RectControl 
-		        Var parentContainer As EmbeddedWindowControl
-		        
-		        If parent IsA EmbeddedWindowControl Then
-		          parentContainer = EmbeddedWindowControl(parent)
-		          Self.addOuterContainer(parentContainer, pos)
-		        Else
-		          parentRect = RectControl(parent)
-		          Self.addOuterContainer(parentRect, pos)
-		        End If
-		        
-		        // check if its the base window
-		        If parent IsA EmbeddedWindowControl Then
-		          parent = parentContainer.Window
-		        Else
-		          parent = parentRect.Parent
-		        End If
-		        
+		  If myWindow = Nil Then
+		    If parent = Nil Then
+		      // control is directly in a window
+		      If focusWindow IsA ContainerControl Then
+		        Var focCC As ContainerControl = ContainerControl(focusWindow)
+		        myWindow = focCC.Window
 		      Else
-		        myWindow = parent
+		        myWindow = focusControl.Window
 		      End If
+		    Else
+		      // control is in a subcontrol
 		      
-		    Wend
+		      While Not myWindow IsA Window
+		        If Not parent IsA Window Then 
+		          
+		          // calc position
+		          Var parentRect As RectControl 
+		          Var parentContainer As EmbeddedWindowControl
+		          
+		          If parent IsA EmbeddedWindowControl Then
+		            parentContainer = EmbeddedWindowControl(parent)
+		            Self.addOuterContainer(parentContainer, pos)
+		          Else
+		            parentRect = RectControl(parent)
+		            Self.addOuterContainer(parentRect, pos)
+		          End If
+		          
+		          // check if its the base window
+		          If parent IsA EmbeddedWindowControl Then
+		            parent = parentContainer.Window
+		          Else
+		            parent = parentRect.Parent
+		          End If
+		          
+		        Else
+		          myWindow = parent
+		        End If
+		        
+		      Wend
+		    End If
 		  End If
 		  
 		  // embed containers
@@ -301,44 +337,46 @@ Protected Class introStep
 		  
 		  parent = focusControl.Parent
 		  
-		  If parent = Nil Then
-		    // control is directly in a window
-		    If focusWindow IsA ContainerControl Then
-		      Var focCC As ContainerControl = ContainerControl(focusWindow)
-		      myWindow = focCC.Window
-		    Else
-		      myWindow = focusControl.Window
-		    End If
-		  Else
-		    // control is in a subcontrol
-		    
-		    While Not myWindow IsA Window
-		      If Not parent IsA Window Then 
-		        
-		        // calc position
-		        Var parentRect As RectControl 
-		        Var parentContainer As EmbeddedWindowControl
-		        
-		        If parent IsA EmbeddedWindowControl Then
-		          parentContainer = EmbeddedWindowControl(parent)
-		          Self.addOuterContainer(parentContainer, pos)
-		        Else
-		          parentRect = RectControl(parent)
-		          Self.addOuterContainer(parentRect, pos)
-		        End If
-		        
-		        // check if its the base window
-		        If parent IsA EmbeddedWindowControl Then
-		          parent = parentContainer.Window
-		        Else
-		          parent = parentRect.Parent
-		        End If
-		        
+		  If myWindow = Nil Then
+		    If parent = Nil Then
+		      // control is directly in a window
+		      If focusWindow IsA ContainerControl Then
+		        Var focCC As ContainerControl = ContainerControl(focusWindow)
+		        myWindow = focCC.Window
 		      Else
-		        myWindow = parent
+		        myWindow = focusControl.Window
 		      End If
+		    Else
+		      // control is in a subcontrol
 		      
-		    Wend
+		      While Not myWindow IsA Window
+		        If Not parent IsA Window Then 
+		          
+		          // calc position
+		          Var parentRect As RectControl 
+		          Var parentContainer As EmbeddedWindowControl
+		          
+		          If parent IsA EmbeddedWindowControl Then
+		            parentContainer = EmbeddedWindowControl(parent)
+		            Self.addOuterContainer(parentContainer, pos)
+		          Else
+		            parentRect = RectControl(parent)
+		            Self.addOuterContainer(parentRect, pos)
+		          End If
+		          
+		          // check if its the base window
+		          If parent IsA EmbeddedWindowControl Then
+		            parent = parentContainer.Window
+		          Else
+		            parent = parentRect.Parent
+		          End If
+		          
+		        Else
+		          myWindow = parent
+		        End If
+		        
+		      Wend
+		    End If
 		  End If
 		  
 		  // resize containers
@@ -445,9 +483,10 @@ Protected Class introStep
 
 	#tag Method, Flags = &h0
 		Sub show()
+		  if ControlArrayMyWindow <> nil then myWindow = ControlArrayMyWindow
+		  
 		  If focusWindow <> Nil Then
 		    If focusWindow IsA ContainerControl Then
-		      Var cnt As ContainerControl = ContainerControl(focusWindow)
 		      Var r As New RectControl
 		      r.Left = focusWindow.Left
 		      r.Top = focusWindow.Top
@@ -527,6 +566,8 @@ Protected Class introStep
 
 	#tag Method, Flags = &h21
 		Private Sub windowResized(windw as Window)
+		  If ControlArrayMyWindow <> Nil Then myWindow = ControlArrayMyWindow
+		  
 		  Self.resize
 		End Sub
 	#tag EndMethod
@@ -559,6 +600,10 @@ Protected Class introStep
 
 	#tag Property, Flags = &h0
 		cntTop As introCnt
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ControlArrayMyWindow As Window
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

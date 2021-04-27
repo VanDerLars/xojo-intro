@@ -109,7 +109,7 @@ Begin Window Window1
       HasBorder       =   True
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
-      Height          =   100
+      Height          =   221
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
@@ -128,7 +128,7 @@ Begin Window Window1
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "rerwer we"
+      Text            =   "Without resizing, the intro step for this control should appear as a MessageDialog, because there's not enough space for the Message.\n\nIf you resize the Window it gets more space and it is displayed as an embedded field."
       TextAlignment   =   0
       TextColor       =   &c00000000
       Tooltip         =   ""
@@ -233,7 +233,7 @@ Begin Window Window1
       Top             =   261
       Transparent     =   True
       Visible         =   True
-      Width           =   300
+      Width           =   261
    End
 End
 #tag EndWindow
@@ -242,6 +242,7 @@ End
 	#tag Event
 		Sub Open()
 		  
+		  
 		  Self.introHandler1.addStep(New introStep(Self.TextArea1, "TextArea", "This is a single line text input field." + EndOfLine + "If you didn't resize the window then this should be prompted in a messagebox, cause there's not enough space."))
 		  Self.introHandler1.addStep(New introStep(Self.ComboBox1, "Combobox", "The combobox combines a textarea and a listbox"))
 		  Self.introHandler1.addStep(New introStep(Self.GroupBox1, "Groupbox", "Groupboxes are used to group multiple controls"))
@@ -249,6 +250,13 @@ End
 		  Self.introHandler1.addStep(New introStep(Self, "Window", "Windows are the basic user interface structures where you can place your controls onto"))
 		  Self.introHandler1.addStep(New introStep(Self.TestContainer1, "ContainerControl", "ContainerControls are structures to be embedded into a layout. You can nest Controls."))
 		  Self.introHandler1.addStep(New introStep(Self.TestContainer1.Label2, "Nested Controls", "With this library you can even focus on controls which are placed inside Containers."))
+		  
+		  
+		  Var rArr() As RectControl
+		  rArr.Add(Self.ComboBox1)
+		  rArr.Add(Self.PushButton2)
+		  Self.introHandler1.addStep(New introStep(rArr, "ControlArray", "You can also highlight multiple Controls at once"))
+		  
 		  
 		  
 		End Sub
