@@ -9,7 +9,7 @@ Begin introMessage introMessageSingle
    DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
-   HasBackgroundColor=   True
+   HasBackgroundColor=   False
    Height          =   164
    InitialParent   =   ""
    Left            =   0
@@ -25,6 +25,32 @@ Begin introMessage introMessageSingle
    Transparent     =   True
    Visible         =   True
    Width           =   320
+   Begin RoundRectangle RoundRectangle1
+      AllowAutoDeactivate=   True
+      BorderColor     =   &cFFFC5500
+      BorderThickness =   1.0
+      CornerHeight    =   10.0
+      CornerWidth     =   10.0
+      Enabled         =   True
+      FillColor       =   &cFAFF8312
+      Height          =   164
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   False
+      Visible         =   True
+      Width           =   320
+   End
    Begin Label lblTitle
       AllowAutoDeactivate=   True
       Bold            =   True
