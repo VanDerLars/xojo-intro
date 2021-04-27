@@ -242,7 +242,7 @@ End
 	#tag Event
 		Sub Open()
 		  
-		  Self.introHandler1.addStep(New introStep(Self.TextArea1, "TextArea", "This is a single line text input field"))
+		  Self.introHandler1.addStep(New introStep(Self.TextArea1, "TextArea", "This is a single line text input field." + EndOfLine + "If you didn't resize the window then this should be prompted in a messagebox, cause there's not enough space."))
 		  Self.introHandler1.addStep(New introStep(Self.ComboBox1, "Combobox", "The combobox combines a textarea and a listbox"))
 		  Self.introHandler1.addStep(New introStep(Self.GroupBox1, "Groupbox", "Groupboxes are used to group multiple controls"))
 		  Self.introHandler1.addStep(New introStep(Self.PushButton1, "PushButton", "This is a button which fires some code."))
