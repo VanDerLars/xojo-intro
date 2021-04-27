@@ -10,7 +10,7 @@ Begin Window Window1
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   432
+   Height          =   468
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -86,10 +86,16 @@ Begin Window Window1
       Width           =   246
    End
    Begin introHandler introHandler1
+      backgroundColorBackground=   &cE8ACA182
+      backgroundColorMessage=   &c76B5E427
+      borderColorMessage=   &c4582FF3A
+      closeStepByClickOnBackground=   False
+      closeStepByClickOnDescription=   True
       Index           =   -2147483648
       LockedInPosition=   False
       Scope           =   0
       TabPanelIndex   =   0
+      useOwnColors    =   True
    End
    Begin TextArea TextArea1
       AllowAutoDeactivate=   True
@@ -230,10 +236,45 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   261
+      Top             =   198
       Transparent     =   True
       Visible         =   True
       Width           =   261
+   End
+   Begin Label Label1
+      AllowAutoDeactivate=   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   38
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   255
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Hint: Change colors and behavior in the introHandler Object in this Page"
+      TextAlignment   =   0
+      TextColor       =   &cE84D3D00
+      Tooltip         =   ""
+      Top             =   19
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   361
    End
 End
 #tag EndWindow

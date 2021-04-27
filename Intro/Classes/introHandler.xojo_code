@@ -7,6 +7,18 @@ Protected Class introHandler
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub applyOptions(nextstep as introStep)
+		  nextstep.backgroundColorBackground = Self.backgroundColorBackground
+		  nextstep.backgroundColorMessage = Self.backgroundColorMessage
+		  nextstep.borderColorMessage = Self.borderColorMessage
+		  nextstep.closeStepByClickOnBackground = Self.closeStepByClickOnBackground
+		  
+		  nextstep.useOwnColors = Self.useOwnColors
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub cancelCalled(sender as introStep)
 		  
 		  RemoveHandler sender.CallNextStep, AddressOf nextStepCalled
@@ -82,6 +94,10 @@ Protected Class introHandler
 		  nextstep.isLastStep = (Self.introItems.LastIndex = ind)
 		  nextstep.isFirstStep = (ind = 0)
 		  
+		  
+		  self.applyOptions(nextstep)
+		  
+		  
 		  nextstep.show
 		  
 		  
@@ -101,6 +117,22 @@ Protected Class introHandler
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		backgroundColorBackground As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		backgroundColorMessage As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		borderColorMessage As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		closeStepByClickOnBackground As Boolean = true
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private currStep As introStep
 	#tag EndProperty
@@ -111,6 +143,10 @@ Protected Class introHandler
 
 	#tag Property, Flags = &h0
 		introItems() As introStep
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		useOwnColors As Boolean = false
 	#tag EndProperty
 
 
@@ -153,6 +189,46 @@ Protected Class introHandler
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="closeStepByClickOnBackground"
+			Visible=true
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="useOwnColors"
+			Visible=true
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="backgroundColorMessage"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="borderColorMessage"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="backgroundColorBackground"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

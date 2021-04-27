@@ -222,6 +222,15 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused X
+		  #Pragma Unused Y
+		  
+		  if self.closeStepByClickOnDescription then RaiseEvent clicked
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  Self.lblTitle.Text = Self.title
 		  self.tbMessage.Text = self.message
@@ -240,6 +249,15 @@ End
 	#tag Hook, Flags = &h0
 		Event callPrev()
 	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event clicked()
+	#tag EndHook
+
+
+	#tag Property, Flags = &h0
+		closeStepByClickOnDescription As Boolean = true
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -495,6 +513,14 @@ End
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="closeStepByClickOnDescription"
+		Visible=false
+		Group="Behavior"
+		InitialValue="true"
 		Type="Boolean"
 		EditorType=""
 	#tag EndViewProperty

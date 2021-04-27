@@ -15,6 +15,38 @@ Protected Class introStep
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub applyOptionToBackground(cntBG as introcnt)
+		  cntBG.closeStepByClickOnBackground = Self.closeStepByClickOnBackground
+		  
+		  If useOwnColors Then
+		    cntBG.BackgroundColor = Self.backgroundColorBackground
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub applyOptionToMessage(cntMes as introMessageMultiple)
+		  cntMes.closeStepByClickOnDescription = Self.closeStepByClickOnDescription
+		  
+		  If useOwnColors Then
+		    cntMes.RoundRectangle1.FillColor = Self.backgroundColorMessage
+		    cntMes.RoundRectangle1.BorderColor = Self.borderColorMessage
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub applyOptionToMessage(cntMes as introMessageSingle)
+		  cntMes.closeStepByClickOnDescription = Self.closeStepByClickOnDescription
+		  
+		  If useOwnColors Then
+		    cntMes.RoundRectangle1.FillColor = Self.backgroundColorMessage
+		    cntMes.RoundRectangle1.BorderColor = Self.borderColorMessage
+		  End If
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub backgroundClicked(sender as introcnt)
 		  Self.remove
 		  
@@ -139,6 +171,11 @@ Protected Class introStep
 		  Var cBottom As New introCnt
 		  Var cRight As New introCnt
 		  
+		  applyOptionToBackground(cTop)
+		  applyOptionToBackground(cLeft)
+		  applyOptionToBackground(cBottom)
+		  applyOptionToBackground(cRight)
+		  
 		  cTop.EmbedWithin(myWindow, 0, 0, myWindow.Width, pos.T)
 		  cbottom.EmbedWithin(myWindow, 0, pos.T + pos.H, myWindow.Width, myWindow.Height - pos.T - pos.H)
 		  cLeft.EmbedWithin(myWindow, 0, pos.T, pos.L, pos.H)
@@ -172,6 +209,7 @@ Protected Class introStep
 		    
 		    Self.cntTop = cTop
 		    
+		    applyOptionToBackground(cTop)
 		  End If
 		  
 		End Sub
@@ -531,6 +569,8 @@ Protected Class introStep
 		  mes.btn_next.Enabled = Not(Self.isLastStep)
 		  mes.btn_prev.Enabled = Not(Self.isFirstStep)
 		  
+		  self.applyOptionToMessage(mes)
+		  
 		  If Self.isLastStep Then 
 		    mes.btn_cancel.Caption = "Finish"
 		    mes.btn_cancel.Default = True
@@ -588,6 +628,7 @@ Protected Class introStep
 		  
 		  Self.introMessageContainer = mes
 		  
+		  self.applyOptionToMessage(mes)
 		  
 		  If Self.myWindow <> Nil Then
 		    AddHandler myWindow.resizing, WeakAddressOf windowResized
@@ -621,6 +662,26 @@ Protected Class introStep
 		Event callPrevStep()
 	#tag EndHook
 
+
+	#tag Property, Flags = &h0
+		backgroundColorBackground As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		backgroundColorMessage As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		borderColorMessage As Color
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		closeStepByClickOnBackground As Boolean = true
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		closeStepByClickOnDescription As Boolean = true
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		cntBottom As introCnt
@@ -684,6 +745,10 @@ Protected Class introStep
 
 	#tag Property, Flags = &h0
 		title As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		useOwnColors As Boolean = false
 	#tag EndProperty
 
 
@@ -766,6 +831,70 @@ Protected Class introStep
 			Group="Behavior"
 			InitialValue="false"
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="singleMode"
+			Visible=false
+			Group="Behavior"
+			InitialValue="false"
+			Type="boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlArrayMyWindow"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Window"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="closeStepByClickOnBackground"
+			Visible=false
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="closeStepByClickOnDescription"
+			Visible=false
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="useOwnColors"
+			Visible=false
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="backgroundColorBackground"
+			Visible=false
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="backgroundColorMessage"
+			Visible=false
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="borderColorMessage"
+			Visible=false
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
