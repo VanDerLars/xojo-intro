@@ -57,7 +57,12 @@ See the test project, this should give you everthing you need.
 - Controls inside nested ContainerControls will work as well
 
 ## Screenshot:
+Basic functions:
 ![screencast](https://github.com/VanDerLars/xojo-intro/blob/main/screencast.gif)
+
+Resizing (not perfect currently):
+
+![screencast resize](https://github.com/VanDerLars/xojo-intro/blob/main/screencast_resize.gif)
 
 ## Ideas and todo
 
