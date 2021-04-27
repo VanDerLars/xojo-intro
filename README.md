@@ -74,6 +74,7 @@ you have the following options, which can be set in the `introHandler` class ove
 - The IntroHandler will always try to display the IntoContainer in a good position next to the highlighted Control. In case that there's not enough space on your layout, it will display a `messagebox`
 - You can use all sorts of regular UI controls, which inherit from `RectControl`, but also `Window` and `ContainerControl` is possible
 - Controls inside nested ContainerControls will work as well
+- By making an array of RectControls, you can highlight multiple controls at once
 
 ## Screenshots:
 
