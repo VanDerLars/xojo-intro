@@ -147,7 +147,7 @@ Protected Class introStep
 		  If myWindow Is Nil And focusWindow <> Nil Then
 		    // is a window or containercontrol
 		    If focusWindow IsA ContainerControl Then
-		      MessageBox("container")
+		      //MessageBox("container")
 		      
 		    Else
 		      // window
@@ -156,12 +156,10 @@ Protected Class introStep
 		      T = (focusWindow.Height / 2) - (Self.introMessageContainer.Height / 2)
 		      
 		      Self.introMessageContainer.EmbedWithin(focusWindow, L, T, Self.introMessageContainer.Width, Self.introMessageContainer.Height)
-		      
 		    End If
 		    
 		  Else
 		    Var pos As introStepPosition = Self.focusControlPosition
-		    
 		    Var gapToBottom As Integer = myWindow.Height - pos.T - pos.H + 5
 		    
 		    If gapToBottom > Self.introMessageContainer.Height Then
@@ -170,13 +168,11 @@ Protected Class introStep
 		    Else
 		      
 		      Var gapToTop As Integer =  pos.T - 5
-		      
 		      If gapToTop > Self.introMessageContainer.Height Then
 		        // embed above
 		        Self.introMessageContainer.EmbedWithin(myWindow, pos.L, pos.T - Self.introMessageContainer.Height - 5, Self.introMessageContainer.Width, Self.introMessageContainer.Height)
 		      Else
 		        Var gap_right As Integer = myWindow.Width - pos.L - pos.W -5
-		        
 		        If gap_right > Self.introMessageContainer.Width Then
 		          // embed right
 		          Self.introMessageContainer.EmbedWithin(myWindow, pos.L + pos.W + 5, pos.T, Self.introMessageContainer.Width, Self.introMessageContainer.Height)
@@ -208,7 +204,6 @@ Protected Class introStep
 		              m.CancelButton.Caption = "Cancel"
 		            End If
 		            
-		            
 		            Var erg As MessageDialogButton = m.showmodal
 		            Select Case erg
 		            Case m.ActionButton
@@ -223,7 +218,6 @@ Protected Class introStep
 		            
 		            Self.remove
 		          End If
-		          
 		          
 		        End If
 		      End If
@@ -276,6 +270,12 @@ Protected Class introStep
 		    Self.introMessageContainer.Close
 		  End If
 		  
+		  If Self.myWindow <> Nil Then
+		    RemoveHandler myWindow.resizing, WeakAddressOf windowResized
+		  End If
+		  
+		  
+		  
 		  Self.cntBottom = Nil
 		  Self.cntTop = Nil
 		  Self.cntLeft = Nil
@@ -290,14 +290,170 @@ Protected Class introStep
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub resize()
+		  
+		  
+		  // find position
+		  Var pos As New introStepPosition(Self.focusControl)
+		  Self.focusControlPosition = pos
+		  
+		  Var parent As Variant
+		  
+		  parent = focusControl.Parent
+		  
+		  If parent = Nil Then
+		    // control is directly in a window
+		    If focusWindow IsA ContainerControl Then
+		      Var focCC As ContainerControl = ContainerControl(focusWindow)
+		      myWindow = focCC.Window
+		    Else
+		      myWindow = focusControl.Window
+		    End If
+		  Else
+		    // control is in a subcontrol
+		    
+		    While Not myWindow IsA Window
+		      If Not parent IsA Window Then 
+		        
+		        // calc position
+		        Var parentRect As RectControl 
+		        Var parentContainer As EmbeddedWindowControl
+		        
+		        If parent IsA EmbeddedWindowControl Then
+		          parentContainer = EmbeddedWindowControl(parent)
+		          Self.addOuterContainer(parentContainer, pos)
+		        Else
+		          parentRect = RectControl(parent)
+		          Self.addOuterContainer(parentRect, pos)
+		        End If
+		        
+		        // check if its the base window
+		        If parent IsA EmbeddedWindowControl Then
+		          parent = parentContainer.Window
+		        Else
+		          parent = parentRect.Parent
+		        End If
+		        
+		      Else
+		        myWindow = parent
+		      End If
+		      
+		    Wend
+		  End If
+		  
+		  // resize containers
+		  
+		  Self.cntTop.Left = 0
+		  Self.cntTop.Top = 0
+		  Self.cntTop.Width = myWindow.Width
+		  Self.cntTop.Height = pos.T
+		  
+		  
+		  Self.cntbottom.Left = 0
+		  Self.cntbottom.Top = pos.T + pos.H
+		  Self.cntbottom.Width = myWindow.Width
+		  Self.cntbottom.Height = myWindow.Height - pos.T - pos.H
+		  
+		  
+		  Self.cntLeft.Left = 0
+		  Self.cntLeft.Top = pos.T
+		  Self.cntLeft.Width = pos.L
+		  Self.cntLeft.Height = pos.H
+		  
+		  
+		  Self.cntRight.Left = pos.L + pos.W
+		  Self.cntRight.Top = pos.T
+		  Self.cntRight.Width = myWindow.Width - pos.L - pos.W
+		  Self.cntRight.Height = pos.H
+		  
+		  
+		  // relocate message
+		  
+		  Var L, T, W, H As Integer
+		  Self.introMessageContainer.Visible = True
+		  
+		  If myWindow Is Nil And focusWindow <> Nil Then
+		    // is a window or containercontrol
+		    If focusWindow IsA ContainerControl Then
+		      //MessageBox("container")
+		      
+		    Else
+		      // window
+		      L = (focusWindow.Width / 2) - (Self.introMessageContainer.Width / 2)
+		      T = (focusWindow.Height / 2) - (Self.introMessageContainer.Height / 2)
+		      W = Self.introMessageContainer.Width
+		      H = Self.introMessageContainer.Height
+		    End If
+		    
+		  Else
+		    //Var pos As introStepPosition = Self.focusControlPosition
+		    Var gapToBottom As Integer = myWindow.Height - pos.T - pos.H + 5
+		    
+		    If gapToBottom > Self.introMessageContainer.Height Then
+		      // embed below
+		      L = pos.L
+		      T = pos.T + pos.H + 5
+		      W = Self.introMessageContainer.Width
+		      H = Self.introMessageContainer.Height
+		    Else
+		      
+		      Var gapToTop As Integer =  pos.T - 5
+		      If gapToTop > Self.introMessageContainer.Height Then
+		        // embed above
+		        L = pos.L
+		        T = pos.T - Self.introMessageContainer.Height - 5
+		        W = Self.introMessageContainer.Width
+		        H = Self.introMessageContainer.Height
+		      Else
+		        Var gap_right As Integer = myWindow.Width - pos.L - pos.W -5
+		        If gap_right > Self.introMessageContainer.Width Then
+		          // embed right
+		          L = pos.L + pos.W + 5
+		          T = pos.T
+		          W = Self.introMessageContainer.Width
+		          H = Self.introMessageContainer.Height
+		          
+		        Else
+		          Var gap_left As Integer = pos.L - 5
+		          If gap_left > Self.introMessageContainer.Width Then
+		            // embed left
+		            L = pos.L - 5 - Self.introMessageContainer.Width
+		            T = pos.T
+		            W = Self.introMessageContainer.Width
+		            H = Self.introMessageContainer.Height
+		            
+		          Else
+		            // usually display a messagedialog, but this leads to bad UX, have to find a better sollution
+		            Self.introMessageContainer.Visible = False
+		            
+		          End If
+		          
+		        End If
+		      End If
+		    End If
+		  End If
+		  
+		  Self.introMessageContainer.Left = L
+		  Self.introMessageContainer.Top = T
+		  Self.introMessageContainer.Width = W
+		  Self.introMessageContainer.Height = H
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub show()
 		  If focusWindow <> Nil Then
 		    If focusWindow IsA ContainerControl Then
+		      Var cnt As ContainerControl = ContainerControl(focusWindow)
 		      Var r As New RectControl
 		      r.Left = focusWindow.Left
 		      r.Top = focusWindow.Top
 		      r.Width = focusWindow.Width
 		      r.Height = focusWindow.Height
+		      
 		      
 		      Self.focusControl = r
 		      
@@ -332,12 +488,21 @@ Protected Class introStep
 		  AddHandler mes.callnext, AddressOf nextCalled
 		  
 		  
+		  If Self.myWindow <> Nil Then
+		    AddHandler myWindow.resizing, WeakAddressOf windowResized
+		  End If
+		  
 		  Self.displayIntroMessage
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub showSingle()
+		  Self.singleMode = True
+		  
 		  If Self.focusControl <> Nil Then Self.displayBackgroundRectControl
 		  If Self.focusWindow <> Nil Then Self.displayBackgroundWindowControl
 		  
@@ -350,7 +515,19 @@ Protected Class introStep
 		  Self.introMessageContainer = mes
 		  
 		  
-		  self.displayIntroMessage
+		  Self.displayIntroMessage
+		  
+		  
+		  If Self.myWindow <> Nil Then
+		    AddHandler myWindow.resizing, WeakAddressOf windowResized
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub windowResized(windw as Window)
+		  Self.resize
 		End Sub
 	#tag EndMethod
 
@@ -417,6 +594,10 @@ Protected Class introStep
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		singleMode As boolean = false
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		title As string
 	#tag EndProperty
 
@@ -477,6 +658,30 @@ Protected Class introStep
 			InitialValue=""
 			Type="string"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="focusWindow"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Window"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="isFirstStep"
+			Visible=false
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="isLastStep"
+			Visible=false
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
