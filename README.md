@@ -16,29 +16,27 @@ Multiple step intros provide a simple UI to step-by-step describe your controls 
 SampleCode:
 ``` Xojo
 Sub ShowMultipleIntro()
-// you can use every regular Control (which inherits from RectControl)
-Self.introHandler1.addStep(New introStep(Self.ComboBox1, "Combobox", "The combobox combines a textarea and a listbox"))
-Self.introHandler1.addStep(New introStep(Self.GroupBox1, "Groupbox", "Groupboxes are used to group multiple controls"))
-Self.introHandler1.addStep(New introStep(Self.PushButton1, "PushButton", "This is a button which fires some code."))
+  // you can use every regular Control (which inherits from RectControl)
+  Self.introHandler1.addStep(New introStep(Self.ComboBox1, "Combobox", "The combobox combines a textarea and a listbox"))
+  Self.introHandler1.addStep(New introStep(Self.GroupBox1, "Groupbox", "Groupboxes are used to group multiple controls"))
+  Self.introHandler1.addStep(New introStep(Self.PushButton1, "PushButton", "This is a button which fires some code."))
 
-// you can also use a Window
-Self.introHandler1.addStep(New introStep(Self, "Window", "Windows are the basic user interface structures where you can place your controls onto"))
+  // you can also use a Window
+  Self.introHandler1.addStep(New introStep(Self, "Window", "Windows are the basic user interface structures where you can place your controls onto"))
 
-// also embedded ContainerControls are possible
-Self.introHandler1.addStep(New introStep(Self.TestContainer1, "ContainerControl", "ContainerControls are structures to be embedded into a layout. You can nest Controls."))
+  // also embedded ContainerControls are possible
+  Self.introHandler1.addStep(New introStep(Self.TestContainer1, "ContainerControl", "ContainerControls are structures to be embedded into a layout. You can nest Controls."))
 
-// and also controls inside embedded ContainerControls
-Self.introHandler1.addStep(New introStep(Self.TestContainer1.Label2, "Nested Controls", "With this library you can even focus on controls which are placed inside Containers."))
+  // and also controls inside embedded ContainerControls
+  Self.introHandler1.addStep(New introStep(Self.TestContainer1.Label2, "Nested Controls", "With this library you can even focus on controls which are placed inside Containers."))
 
-// And new: You can also highlight multiple controls at once, by using an array of controls:
-Var rArr() As RectControl
-rArr.Add(Self.ComboBox1)
-rArr.Add(Self.PushButton2)
-Self.introHandler1.addStep(New introStep(rArr, "ControlArray", "You can also highlight multiple Controls at once"))
+  // And new: You can also highlight multiple controls at once, by using an array of controls:
+  Var rArr() As RectControl
+  rArr.Add(Self.ComboBox1)
+  rArr.Add(Self.PushButton2)
+  Self.introHandler1.addStep(New introStep(rArr, "ControlArray", "You can also highlight multiple Controls at once"))
 
-
-
-Self.introHandler1.start
+  Self.introHandler1.start
 End Sub
 ```
 
