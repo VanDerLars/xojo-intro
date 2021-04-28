@@ -4,6 +4,16 @@ Xojo-Intro implements a simple way to build step-by-step tutorials in Xojo desto
 
 The equivalent for xojo web framework 1 is here -> https://github.com/VanDerLars/xojo_intro_js/
 
+## Alert
+
+```markdown
+This library _currently_ **only** works on MacOS, since Xojo on Windows doesn't allow to draw semi-transparent controls.
+
+I haven't testet it on a Linux Distro, so this could maybe someone report here.
+
+Also, if you have Ideas to implement semi-transparent controls on Windows with Xojo - a hint or a pull request would be welcome.
+```
+
 ### Usage as multiple step intro
 
 Multiple step intros provide a simple UI to step-by-step describe your controls and functionalities.
